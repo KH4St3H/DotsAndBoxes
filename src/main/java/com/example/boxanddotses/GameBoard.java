@@ -1,5 +1,7 @@
 package com.example.boxanddotses;
 
+import com.example.boxanddotses.lines.HLine;
+import com.example.boxanddotses.lines.VLine;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
@@ -8,16 +10,17 @@ import javafx.scene.layout.StackPane;
 public class GameBoard extends StackPane {
     int dotsCount;
     int boardSize = 800;
-    Pane gridPane = new Pane();
+    Pane lines = new Pane();
+    Pane dots = new Pane();
+    Pane boxes = new Pane();
     public GameBoard(int dotsCount){
-        ObservableList<Node> children = gridPane.getChildren();
-        gridPane.setPrefSize(800, 800);
+        ObservableList<Node> children = dots.getChildren();
+        dots.setPrefSize(800, 800);
         this.setPrefSize(800, 800);
 
         float gap = (float) (boardSize - 200) / dotsCount;
-        Pane lines = new Pane();
 
-        this.getChildren().addAll(gridPane, lines);
+        this.getChildren().addAll(boxes, dots, lines);
         this.dotsCount = dotsCount;
         for (int i = 0; i < dotsCount; i++) {
             for (int j = 0; j < dotsCount; j++) {

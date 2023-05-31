@@ -5,4 +5,6 @@ module com.example.boxanddotses {
 
     opens com.example.boxanddotses to javafx.fxml;
     exports com.example.boxanddotses;
+    exports com.example.boxanddotses.lines;
+    opens com.example.boxanddotses.lines to javafx.fxml;
 }
