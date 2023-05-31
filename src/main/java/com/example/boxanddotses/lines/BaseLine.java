@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
 public class BaseLine extends Line {
+    boolean colored = false;
     public BaseLine(double startX, double startY, double length){
         this.setStartX(startX);
         this.setStartY(startY);
@@ -14,13 +15,20 @@ public class BaseLine extends Line {
         Color hoveredColor = Color.rgb(0, 0, 0, 0.5);
         this.setStroke(defaultColor);
         this.setOnMouseEntered(mouseEvent -> {
-            if(this.getStroke() == defaultColor)
+            if(this.getStroke() == defaultColor && !colored)
                 this.setStroke(hoveredColor);
         });
 
         this.setOnMouseExited(mouseEvent -> {
-            if(this.getStroke() == hoveredColor)
+            if(this.getStroke() == hoveredColor && !colored)
                 this.setStroke(defaultColor);
         });
+    }
+    public boolean isColored(){
+        return colored;
+    }
+    public void colorize(Color color){
+        colored = true;
+        this.setStroke(color);
     }
 }

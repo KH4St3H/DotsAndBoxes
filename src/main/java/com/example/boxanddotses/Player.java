@@ -1,0 +1,19 @@
+package com.example.boxanddotses;
+
+import javafx.scene.paint.Color;
+
+public class Player {
+    private static int latestId;
+    int id;
+    Color color;
+    String name;
+    public Player(int id, String name, Color color){
+        this.id = id;
+        this.name = name;
+        this.color = color;
+    }
+    public static Player create(String name, Color color){
+        return new Player(latestId++, name, color);
+    }
+
+}

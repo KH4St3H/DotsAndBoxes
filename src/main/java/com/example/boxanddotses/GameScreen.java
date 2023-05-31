@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 
 public class GameScreen extends Pane {
     GridPane root;
-    public GameScreen() {
+    public GameScreen(Player[] players) {
         this.setWidth(1100);
         HBox root = new HBox();
         Pane p = new Pane();
@@ -29,7 +29,7 @@ public class GameScreen extends Pane {
         p.getChildren().add(b);
         ObservableList<Node> children =  this.getChildren();
         children.add(root);
-        GameBoard gameBoard = new GameBoard(8);
+        GameBoard gameBoard = new GameBoard(8, players);
         root.getChildren().addAll(gameBoard, p);
 
 
