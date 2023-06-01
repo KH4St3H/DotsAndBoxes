@@ -1,10 +1,14 @@
 package com.example.boxanddotses.lines;
 
+import com.example.boxanddotses.Box;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
+import java.util.ArrayList;
+
 public class BaseLine extends Line {
     boolean colored = false;
+    public ArrayList<Box> boxes = new ArrayList<>();
     public BaseLine(double startX, double startY, double length){
         this.setStartX(startX);
         this.setStartY(startY);
@@ -27,8 +31,12 @@ public class BaseLine extends Line {
     public boolean isColored(){
         return colored;
     }
-    public void colorize(Color color){
+    public boolean select(Color color){
+        if(colored){
+            return false;
+        }
         colored = true;
         this.setStroke(color);
+        return true;
     }
 }

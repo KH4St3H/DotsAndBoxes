@@ -9,37 +9,51 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class GameBoard extends StackPane {
-    int dotsCount;
-    int boardSize = 800;
+    static double gap;
     Pane dotsAndLines = new Pane();
     Pane boxes = new Pane();
     Player[] players;
     int turn = 0;
     public GameBoard(int dotsCount, Player[] players){
+        int boardSize = 800;
         this.players = players;
 
         ObservableList<Node> children = dotsAndLines.getChildren();
-        this.setPrefSize(800, 800);
+        this.setPrefSize(boardSize, boardSize);
 
-        float gap = (float) (boardSize - 200) / dotsCount;
+        gap = (double) (boardSize - 200) / dotsCount;
 
+        int boxIndex = -1;
         this.getChildren().addAll(boxes, dotsAndLines);
-        this.dotsCount = dotsCount;
         for (int i = 0; i < dotsCount; i++) {
             for (int j = 0; j < dotsCount; j++) {
                 Dot dot = new Dot();
-                double X = 100 + (j+0.5) * gap;
-                double Y = 100 + gap*(i+0.5);
+                double X = getCoordinate(j);
+                double Y = getCoordinate(i);
+                Box box = new Box(X, Y, gap);
+                boxIndex++;
+//                if(i != dotsCount - 1 && j != dotsCount - 1) {
+                    boxes.getChildren().add(box);
+//                }
                 dot.setCenterX(X);
                 dot.setCenterY(Y);
                 if(j < dotsCount - 1){
                     HLine line = new HLine(X, Y, gap);
-//                    dotsAndLines.getChildren().add(line);
+                    line.boxes.add(box);
+                    if(i != 0){
+                        System.out.printf("i: %d j: %d boxIndex: %d dotsCount: %d\n", i, j, boxIndex, dotsCount);
+                        line.boxes.add((Box) boxes.getChildren().get(boxIndex - dotsCount));
+                    }
+
                     children.add(line);
                     line.setOnMouseClicked(event -> lineClicked(line));
                 }
                 if(i < dotsCount - 1){
                     VLine line = new VLine(X, Y, gap);
+                    line.boxes.add(box);
+                    if(j != 0){
+                        line.boxes.add((Box) boxes.getChildren().get(boxIndex - 1));
+                    }
                     children.add(line);
                     line.setOnMouseClicked(event -> lineClicked(line));
                 }
@@ -48,15 +62,25 @@ public class GameBoard extends StackPane {
 
         }
     }
-    void checkForBoxes(){
-
+    static double getCoordinate(int x){
+        return 100 + (x + 0.5) * gap;
+    }
+    void checkForBoxes(BaseLine line){
+        for(Box box: line.boxes){
+            boolean activated = box.addLine();
+            if(activated){
+                box.setColor(getPlayingPlayer().color);
+            }
+        }
     }
     void lineClicked(BaseLine line){
         if(line.isColored()){
            return;
         }
-        line.colorize(getPlayingPlayer().color);
-        checkForBoxes();
+        boolean colored = line.select(getPlayingPlayer().color);
+        if(colored) {
+            checkForBoxes(line);
+        }
         nextTurn();
     }
     Player getPlayingPlayer(){

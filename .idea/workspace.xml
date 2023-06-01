@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="315f76b0-df65-4dc4-953e-28f14c652679" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/boxanddotses/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/boxanddotses/Box.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/boxanddotses/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/boxanddotses/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/boxanddotses/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/boxanddotses/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/boxanddotses/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/boxanddotses/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/boxanddotses/lines/BaseLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/boxanddotses/lines/BaseLine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
