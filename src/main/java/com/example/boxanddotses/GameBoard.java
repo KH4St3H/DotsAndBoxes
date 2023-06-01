@@ -32,16 +32,13 @@ public class GameBoard extends StackPane {
                 double Y = getCoordinate(i);
                 Box box = new Box(X, Y, gap);
                 boxIndex++;
-//                if(i != dotsCount - 1 && j != dotsCount - 1) {
-                    boxes.getChildren().add(box);
-//                }
+                boxes.getChildren().add(box);
                 dot.setCenterX(X);
                 dot.setCenterY(Y);
                 if(j < dotsCount - 1){
                     HLine line = new HLine(X, Y, gap);
                     line.boxes.add(box);
                     if(i != 0){
-                        System.out.printf("i: %d j: %d boxIndex: %d dotsCount: %d\n", i, j, boxIndex, dotsCount);
                         line.boxes.add((Box) boxes.getChildren().get(boxIndex - dotsCount));
                     }
 
@@ -69,7 +66,9 @@ public class GameBoard extends StackPane {
         for(Box box: line.boxes){
             boolean activated = box.addLine();
             if(activated){
-                box.setColor(getPlayingPlayer().color);
+                Player playingPlayer = getPlayingPlayer();
+                box.setColor(playingPlayer.color);
+                playingPlayer.increaseScore();
             }
         }
     }
