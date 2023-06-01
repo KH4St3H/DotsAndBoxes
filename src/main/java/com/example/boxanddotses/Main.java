@@ -13,11 +13,6 @@ public class Main extends Application {
     Player[] players;
     @Override
     public void start(Stage stage) throws IOException {
-        Player player1 = Player.create("Mehrshad", Color.rgb(24, 230, 100));
-        Player player2 = Player.create("Sina", Color.rgb(150, 10, 190));
-        players = new Player[]{player1, player2};
-
-
         Pane root = new Pane();
         Scene scene = new Scene(root, 1100, 800);
         controller = new ScreenController(scene);
@@ -25,9 +20,10 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-        GameScreen gameScreen = new GameScreen(players);
-        controller.addScreen("game", gameScreen);
-        controller.activate("game");
+        PlayerManager managerScreen = new PlayerManager(controller);
+
+        controller.addScreen("playerManager", managerScreen);
+        controller.activate("playerManager");
     }
 
     public static void main(String[] args) {
